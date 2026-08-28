@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H.O.M.E Legacy — A Place to Return. A Place to Grow.</title>
+<meta name="description" content="H.O.M.E Legacy — 2,2 hecta tại Di Linh, Lâm Đồng. Một nơi để gia đình trở về, nghỉ ngơi và trưởng thành cùng nhau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#1F3B2C;
+    --pine-ink:#16281D;
+    --parchment:#F4EFE3;
+    --paper:#FBF8F1;
+    --ochre:#C08A3E;
+    --terracotta:#A8593B;
+    --moss:#7C9473;
+    --line:rgba(31,59,44,0.16);
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--pine-ink);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.12;
+    margin:0 0 .5em;
+    letter-spacing:-.01em;
+  }
+  h1{font-weight:600;}
+  p{margin:0 0 1em;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  section{padding:88px 0;position:relative;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pine);
+    opacity:.7;
+    display:block;
+    margin-bottom:14px;
+  }
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:5px 11px;
+    border-radius:100px;
+    margin-bottom:16px;
+  }
+  .badge.available{background:var(--pine);color:var(--parchment);}
+  .badge.concept{border:1px solid var(--ochre);color:var(--ochre);background:transparent;}
+  .badge.future{border:1px dashed var(--terracotta);color:var(--terracotta);background:transparent;}
+  .btn{
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    display:inline-block;
+    text-align:center;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--terracotta);color:var(--paper);}
+  .btn-primary:hover{box-shadow:0 6px 18px rgba(168,89,59,.35);}
+  .btn-outline{background:transparent;color:var(--pine);border:1.5px solid var(--pine);}
+  .btn-outline:hover{background:var(--pine);color:var(--parchment);}
+  .btn-ghost{background:transparent;color:var(--pine);text-decoration:underline;padding:14px 6px;}
+
+  /* contour divider — signature element: elevation lines of Di Linh highlands */
+  .contour{width:100%;height:64px;display:block;margin-top:-1px;}
+  .contour path{fill:none;stroke-width:1.2;}
+
+  header.hero{
+    background:var(--pine);
+    color:var(--parchment);
+    padding:120px 0 100px;
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero .wrap{position:relative;z-index:2;}
+  header.hero .loc{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    opacity:.75;
+    margin-bottom:22px;
+  }
+  header.hero h1{font-size:clamp(34px,7vw,64px);max-width:14ch;color:var(--paper);}
+  header.hero .sub{font-size:clamp(16px,2.4vw,19px);max-width:46ch;opacity:.92;margin-bottom:34px;}
+  header.hero .story{max-width:52ch;opacity:.8;font-size:15px;margin-bottom:38px;}
+  header.hero .story .line{display:block;}
+  header.hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  header.hero .badge.available{background:var(--ochre);color:var(--pine-ink);}
+
+  .two-col{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:760px){.two-col{grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}}
+  .place-visual{
+    aspect-ratio:4/3;
+    border-radius:18px;
+    background-image:linear-gradient(to top,rgba(22,40,29,.50),rgba(22,40,29,0) 42%),url('home-di-linh.webp');
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .place-visual::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(22,40,29,.16),transparent 45%);
+    pointer-events:none;
+  }
+  .place-visual .cap{
+    position:absolute;left:16px;bottom:16px;color:var(--paper);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;opacity:.85;
+  }
+  .stat-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;}
+  .stat{font-family:'IBM Plex Mono',monospace;}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:var(--pine);}
+  .stat span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.65;}
+
+  .why-lines p{
+    font-family:'Fraunces',serif;
+    font-size:clamp(19px,2.6vw,25px);
+    font-weight:400;
+    max-width:26ch;
+    margin-bottom:.7em;
+  }
+  .why-lines .kicker{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--terracotta);letter-spacing:.04em;margin-top:24px;}
+
+  .pillars{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:700px){.pillars{grid-template-columns:repeat(4,1fr);}}
+  .pillar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 22px;
+  }
+  .pillar .letter{font-family:'Fraunces',serif;font-size:38px;color:var(--ochre);font-weight:600;margin-bottom:8px;display:block;}
+  .pillar h3{font-size:18px;margin-bottom:6px;}
+  .pillar .tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin-bottom:10px;display:block;}
+  .pillar p{font-size:14px;opacity:.85;margin:0;}
+
+  .stay-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:700px){.stay-grid{grid-template-columns:repeat(3,1fr);}}
+  .stay-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;}
+  .stay-card h4{font-size:16px;margin-bottom:4px;font-family:'Work Sans';font-weight:600;}
+  .stay-card p{font-size:13.5px;opacity:.75;margin:0;}
+
+  .reaction-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:32px;
+    margin-top:28px;
+  }
+  .reaction-q{font-weight:600;margin-bottom:16px;font-size:16px;}
+  .reaction-opts{display:flex;flex-wrap:wrap;gap:10px;}
+  .opt-btn{
+    font-family:'Work Sans';
+    font-size:14px;
+    padding:11px 18px;
+    border-radius:100px;
+    border:1.5px solid var(--line);
+    background:transparent;
+    color:var(--pine-ink);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .opt-btn:hover{border-color:var(--pine);}
+  .opt-btn.selected{background:var(--pine);color:var(--parchment);border-color:var(--pine);}
+  .micro-follow{
+    margin-top:18px;padding-top:18px;border-top:1px dashed var(--line);
+    display:none;
+  }
+  .micro-follow.show{display:block;}
+  .micro-follow .reaction-q{font-size:14.5px;}
+  .thanks-msg{
+    display:none;
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--moss);
+  }
+  .thanks-msg.show{display:block;}
+
+  .contact-form{
+    display:none;
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px dashed var(--line);
+  }
+  .contact-form.show{display:block;}
+  .contact-form.submitted .contact-fields,
+  .contact-form.submitted .contact-submit{opacity:.45;pointer-events:none;}
+  .contact-form .contact-q{font-size:13.5px;font-weight:600;margin-bottom:10px;}
+  .contact-fields{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:12px;}
+  @media(min-width:560px){.contact-fields{grid-template-columns:1fr 1fr;}}
+  .contact-fields input[type=text],
+  .contact-fields input[type=tel],
+  .contact-fields input[type=email]{
+    width:100%;
+    font-family:'Work Sans';
+    font-size:14px;
+    padding:10px 14px;
+    border-radius:10px;
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    color:var(--pine-ink);
+  }
+  .contact-fields input:focus{outline:2px solid var(--pine);outline-offset:1px;}
+  .contact-consent-row{
+    display:flex;align-items:flex-start;gap:8px;
+    font-size:12.5px;opacity:.85;margin-bottom:14px;grid-column:1/-1;
+  }
+  .contact-consent-row input{margin-top:3px;}
+  .contact-error{
+    display:none;
+    font-size:12.5px;color:var(--terracotta);margin-bottom:10px;
+  }
+  .contact-error.show{display:block;}
+
+  .legacy-block{background:var(--pine);color:var(--parchment);border-radius:24px;padding:48px 32px;}
+  .legacy-block h2{color:var(--paper);}
+  .legacy-block .memcap{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);margin-top:18px;}
+
+  .odyssey-levels{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px;}
+  @media(min-width:700px){.odyssey-levels{grid-template-columns:repeat(3,1fr);}}
+  .level{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--paper);}
+  .level .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--terracotta);}
+  .level h4{margin:6px 0 8px;font-size:16px;}
+  .level ul{margin:0;padding-left:18px;font-size:13.5px;opacity:.85;}
+  .disclaimer{
+    font-size:12.5px;opacity:.65;border-left:2px solid var(--ochre);padding-left:14px;margin-top:24px;
+  }
+
+  .wellbeing-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+
+  .partner-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px;}
+  @media(min-width:700px){.partner-grid{grid-template-columns:repeat(3,1fr);}}
+  .partner-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .partner-card h4{font-size:16px;margin-bottom:6px;}
+  .partner-card p{font-size:13.5px;opacity:.8;margin:0;}
+
+  .validation-transition{background:var(--terracotta);color:var(--paper);border-radius:24px;padding:56px 32px;text-align:left;}
+  .validation-transition h2{color:var(--paper);max-width:20ch;}
+  .validation-transition p{opacity:.92;max-width:52ch;}
+
+  #survey-embed{margin-top:30px;background:var(--paper);border-radius:18px;border:1px solid var(--line);overflow:hidden;min-height:480px;}
+  #survey-embed iframe{width:100%;height:640px;border:none;display:block;}
+  .survey-fallback{padding:40px 28px;text-align:center;font-size:14px;opacity:.75;}
+
+  .thankyou{text-align:center;padding-top:60px;padding-bottom:60px;}
+  .thankyou h2{max-width:20ch;margin:0 auto .3em;}
+  .share-row{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
+
+  footer{background:var(--pine-ink);color:rgba(244,239,227,.7);padding:40px 0;}
+  footer .wrap{display:flex;flex-direction:column;gap:14px;}
+  footer .disc-footer{font-size:12px;line-height:1.6;max-width:70ch;opacity:.8;}
+  footer .brand{font-family:'Fraunces',serif;color:var(--parchment);font-size:15px;}
+
+  .section-head{max-width:60ch;margin-bottom:36px;}
+  .center{text-align:center;}
+  .mx-auto{margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+
+<!-- ============ SESSION / ATTRIBUTION (captured silently on load) ============ -->
+
+<!-- 01 HERO -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div class="loc">Di Linh · Lâm Đồng · Việt Nam</div>
+    <span class="badge available">Founding / Discovery Phase</span>
+    <h1>H.O.M.E LEGACY<br>A place to return.</h1>
+    <p class="sub">Một nơi giữa thiên nhiên để bạn nghỉ ngơi, gia đình kết nối và con trẻ trưởng thành theo một cách khác.</p>
+    <p class="story">
+      <span class="line">Không phải một resort.</span>
+      <span class="line">Không chỉ là một retreat.</span>
+      <span class="line">Không chỉ là nơi để học.</span><br><br>
+      <span class="line">H.O.M.E được tạo ra với một ý tưởng đơn giản:</span>
+      <span class="line"><strong>Có những nơi chúng ta đến một lần.</strong></span>
+      <span class="line"><strong>Và có những nơi chúng ta muốn quay trở về.</strong></span>
+    </p>
+    <div class="cta-row">
+      <a href="#place" class="btn btn-primary">Khám phá H.O.M.E</a>
+      <a href="#survey" class="btn btn-outline" style="border-color:rgba(244,239,227,.5);color:var(--parchment);">Góp ý cho H.O.M.E</a>
+    </div>
+  </div>
+</header>
+<svg class="contour" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,20 C300,60 900,-10 1200,30 L1200,60 L0,60 Z" fill="#F4EFE3"/></svg>
+
+<!-- 02 THE PLACE -->
+<section id="place">
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">02 — The Place</span>
+      <span class="badge available">Available Now</span>
+      <h2>2,2 hecta để sống chậm lại.</h2>
+      <p>Thiên nhiên, sáu phòng lưu trú, café, không gian workshop và sự kiện, tất cả nằm giữa vùng đồi Di Linh. Không cần kể dài — mục tiêu chỉ là một cảm giác: mình muốn đến đây.</p>
+      <div class="stat-row">
+        <div class="stat"><b>2.2</b><span>Hecta đất</span></div>
+        <div class="stat"><b>6</b><span>Phòng lưu trú</span></div>
+        <div class="stat"><b>15–20</b><span>Khách / đêm</span></div>
+      </div>
+    </div>
+    <div class="place-visual" role="img" aria-label="Không gian H.O.M.E giữa thiên nhiên Di Linh, Lâm Đồng"><span class="cap">Di Linh, Lâm Đồng — không gian thật của H.O.M.E</span></div>
+  </div>
+</section>
+<svg class="contour" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,35 C400,0 800,55 1200,10 L1200,60 L0,60 Z" fill="#FBF8F1"/></svg>
+
+<!-- 03 WHY H.O.M.E -->
+<section style="background:var(--paper);">
+  <div class="wrap why-lines">
+    <span class="eyebrow">03 — Why H.O.M.E</span>
+    <p>Chúng ta đang có nhiều tiện nghi hơn, nhưng có thực sự có nhiều thời gian hơn cho nhau?</p>
+    <p>Con học rất nhiều, nhưng có đang được chuẩn bị cho cuộc sống thật?</p>
+    <p>Một chuyến đi gia đình hôm nay sẽ còn lại điều gì sau 10 năm?</p>
+    <div class="kicker">RETURN + GROW</div>
+  </div>
+</section>
+
+<!-- 04 FOUR PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">04 — Four Pillars</span>
+      <h2>H · O · M · E</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="letter">H</span>
+        <span class="tag">Healing</span>
+        <h3>Restore Yourself</h3>
+        <p>Nghỉ ngơi, wellbeing, thiền, yoga, trà, sound experience, digital detox.</p>
+      </div>
+      <div class="pillar">
+        <span class="letter">O</span>
+        <span class="tag">Outdoor</span>
+        <h3>Return to Nature</h3>
+        <p>Làm vườn, trekking, camping, glamping, câu cá, outdoor cooking.</p>
+      </div>
+      <div class="pillar">
+        <span class="letter">M</span>
+        <span class="tag">Meaningful Connection</span>
+        <h3>Return to Each Other</h3>
+        <p>Gia đình, cha mẹ – con, couple, community, no-phone experience.</p>
+      </div>
+      <div class="pillar">
+        <span class="letter">E</span>
+        <span class="tag">Education</span>
+        <h3>Grow Beyond Yourself</h3>
+        <p>Odyssey, AI, ngoại ngữ, tài chính, kinh doanh, leadership, life skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 STAY -->
+<section style="background:var(--paper);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">05 — Stay</span>
+      <h2>Đến đây và ở lại.</h2>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-card"><span class="badge available" style="margin-bottom:8px;">Available Now</span><h4>Private Stay</h4><p>Không gian riêng cho gia đình nhỏ.</p></div>
+      <div class="stay-card"><span class="badge available" style="margin-bottom:8px;">Available Now</span><h4>Family Stay</h4><p>Phù hợp nhóm gia đình đông người.</p></div>
+      <div class="stay-card"><span class="badge available" style="margin-bottom:8px;">Available Now</span><h4>Small Group Stay</h4><p>Cho nhóm bạn, nhóm công tác nhỏ.</p></div>
+      <div class="stay-card"><span class="badge future" style="margin-bottom:8px;">Future Vision</span><h4>Glamping</h4><p>Đang trong định hướng phát triển.</p></div>
+      <div class="stay-card"><span class="badge future" style="margin-bottom:8px;">Future Vision</span><h4>Dormitory</h4><p>Đang trong định hướng phát triển.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 FAMILY EXPERIENCE -->
+<section id="family-exp">
+  <div class="wrap">
+    <span class="eyebrow">06 — Family Experience</span>
+    <span class="badge concept">Concept Under Validation</span>
+    <h2>Những khoảnh khắc không thể mua lại.</h2>
+    <p style="max-width:56ch;">Family Weekend · Parent &amp; Child · No-phone Experience · Campfire · Cooking · Garden · Nature Discovery · Legacy Moment.</p>
+  </div>
+</section>
+
+<!-- 07 FAMILY WEEKEND + REACTION + MICRO-INTENT -->
+<section style="background:var(--paper);" id="family-weekend">
+  <div class="wrap">
+    <span class="eyebrow">07 — Family Weekend</span>
+    <span class="badge concept">Concept Under Validation</span>
+    <h2>48 giờ để gia đình thực sự sống cùng nhau.</h2>
+    <p style="max-width:56ch;">Connection · Discovery · Memory. Hành trình có thể gồm: Arrival Ritual, No-phone Family Dinner, Outdoor Experience, Parent–Child Challenge, Odyssey Micro-Experience, Legacy Moment — đây chưa phải lịch trình cố định.</p>
+
+    <div class="reaction-card">
+      <div class="reaction-q">Bạn cảm thấy thế nào về Family Weekend?</div>
+      <div class="reaction-opts" data-group="family_weekend_reaction" data-followup="fw-followup">
+        <button class="opt-btn" data-value="Rất muốn trải nghiệm" data-strong="true">Rất muốn trải nghiệm</button>
+        <button class="opt-btn" data-value="Có thể sẽ thử">Có thể sẽ thử</button>
+        <button class="opt-btn" data-value="Cần biết thêm">Cần biết thêm</button>
+        <button class="opt-btn" data-value="Không phù hợp">Không phù hợp</button>
+      </div>
+      <div class="micro-follow" id="fw-followup">
+        <div class="reaction-q">Nếu chương trình thử nghiệm mở trong thời gian tới, bạn có muốn được mời không?</div>
+        <div class="reaction-opts" data-group="family_weekend_micro_intent" data-contact-form="fw-contact">
+          <button class="opt-btn" data-value="Có">Có</button>
+          <button class="opt-btn" data-value="Có thể">Có thể</button>
+          <button class="opt-btn" data-value="Chưa">Chưa</button>
+        </div>
+        <div class="contact-form" id="fw-contact">
+          <div class="contact-q">Để lại thông tin để chúng tôi mời bạn khi Family Weekend mở thử nghiệm:</div>
+          <div class="contact-error" data-error-for="fw-contact">Vui lòng nhập tên, ít nhất một cách liên hệ (điện thoại/Zalo hoặc email), và đồng ý điều khoản bên dưới.</div>
+          <div class="contact-fields">
+            <input type="text" data-field="name" placeholder="Tên của bạn" autocomplete="name">
+            <input type="tel" data-field="phone" placeholder="Số điện thoại / Zalo" autocomplete="tel">
+            <input type="email" data-field="email" placeholder="Email (nếu có)" autocomplete="email" style="grid-column:1/-1;">
+            <label class="contact-consent-row">
+              <input type="checkbox" data-field="consent">
+              <span>Tôi đồng ý để H.O.M.E sử dụng thông tin này để liên hệ về chương trình tôi chủ động chọn quan tâm.</span>
+            </label>
+          </div>
+          <button class="btn btn-primary contact-submit" type="button">Gửi thông tin</button>
+        </div>
+      </div>
+      <div class="thanks-msg" data-thanks-for="family_weekend_micro_intent">Cảm ơn bạn. Thông tin đã được gửi tới H.O.M.E — chúng tôi sẽ liên hệ khi Family Weekend mở thử nghiệm.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 FAMILY LEGACY -->
+<section id="legacy">
+  <div class="wrap">
+    <span class="eyebrow">08 — Family Legacy</span>
+    <div class="legacy-block">
+      <span class="badge concept" style="border-color:var(--ochre);color:var(--ochre);">Concept Under Validation — Chưa mở bán</span>
+      <h2>10 năm nữa, con bạn sẽ nhớ gì về tuổi thơ?</h2>
+      <p>Một gia đình quay lại H.O.M.E qua nhiều năm: trồng cây, nhìn cây lớn, chụp ảnh mỗi năm, ghi chiều cao, viết thư, tạo những ký ức lặp lại với cha mẹ.</p>
+      <div class="memcap">Memory Capital — Vốn ký ức</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 THE ODYSSEY -->
+<section style="background:var(--paper);" id="odyssey">
+  <div class="wrap">
+    <span class="eyebrow">09 — The Odyssey</span>
+    <span class="badge future">Long-term Education Vision</span>
+    <h2>Education for a different future.</h2>
+    <p style="max-width:56ch;">Nếu được thiết kế lại quá trình trưởng thành của một đứa trẻ, chúng ta sẽ dạy điều gì? Không chỉ hỏi "con biết gì?" mà — <strong>con thực sự làm được gì?</strong></p>
+
+    <div class="odyssey-levels">
+      <div class="level">
+        <span class="num">Level I</span>
+        <h4>Master Yourself</h4>
+        <ul><li>Tự lập, kỷ luật</li><li>Quản lý cảm xúc</li><li>Health &amp; first aid</li><li>Money basics</li><li>Communication</li></ul>
+      </div>
+      <div class="level">
+        <span class="num">Level II</span>
+        <h4>Master the World</h4>
+        <ul><li>Critical thinking</li><li>AI &amp; Technology</li><li>Ngoại ngữ</li><li>Finance, Business</li><li>Teamwork, Negotiation</li></ul>
+      </div>
+      <div class="level">
+        <span class="num">Level III</span>
+        <h4>Create Value</h4>
+        <ul><li>Leadership</li><li>Entrepreneurship</li><li>Investment fundamentals</li><li>Project management</li><li>Real projects</li></ul>
+      </div>
+    </div>
+
+    <div class="reaction-card">
+      <div class="reaction-q">Odyssey Mission 01 — The 100K Challenge: trẻ được giao ngân sách giới hạn, AI, teamwork, để tạo ra một output thật. Nếu có chương trình như vậy, bạn sẽ:</div>
+      <div class="reaction-opts" data-group="odyssey_reaction" data-followup="ody-followup">
+        <button class="opt-btn" data-value="Rất muốn cho con thử" data-strong="true">Rất muốn cho con thử</button>
+        <button class="opt-btn" data-value="Muốn xem chi tiết">Muốn xem chi tiết</button>
+        <button class="opt-btn" data-value="Quan tâm nhưng lo an toàn">Quan tâm nhưng lo an toàn</button>
+        <button class="opt-btn" data-value="Quan tâm nhưng lo chất lượng">Quan tâm nhưng lo chất lượng</button>
+        <button class="opt-btn" data-value="Chưa chắc">Chưa chắc</button>
+        <button class="opt-btn" data-value="Không quan tâm">Không quan tâm</button>
+      </div>
+      <div class="micro-follow" id="ody-followup">
+        <div class="reaction-q">Nếu Odyssey Mission thử nghiệm mở trong thời gian tới, bạn muốn nhận lời mời không?</div>
+        <div class="reaction-opts" data-group="odyssey_micro_intent" data-contact-form="ody-contact">
+          <button class="opt-btn" data-value="Có">Có</button>
+          <button class="opt-btn" data-value="Có thể">Có thể</button>
+          <button class="opt-btn" data-value="Chưa">Chưa</button>
+        </div>
+        <div class="contact-form" id="ody-contact">
+          <div class="contact-q">Để lại thông tin để chúng tôi mời bạn khi Odyssey Mission mở thử nghiệm:</div>
+          <div class="contact-error" data-error-for="ody-contact">Vui lòng nhập tên, ít nhất một cách liên hệ (điện thoại/Zalo hoặc email), và đồng ý điều khoản bên dưới.</div>
+          <div class="contact-fields">
+            <input type="text" data-field="name" placeholder="Tên của bạn" autocomplete="name">
+            <input type="tel" data-field="phone" placeholder="Số điện thoại / Zalo" autocomplete="tel">
+            <input type="email" data-field="email" placeholder="Email (nếu có)" autocomplete="email" style="grid-column:1/-1;">
+            <label class="contact-consent-row">
+              <input type="checkbox" data-field="consent">
+              <span>Tôi đồng ý để H.O.M.E sử dụng thông tin này để liên hệ về chương trình tôi chủ động chọn quan tâm.</span>
+            </label>
+          </div>
+          <button class="btn btn-primary contact-submit" type="button">Gửi thông tin</button>
+        </div>
+      </div>
+      <div class="thanks-msg" data-thanks-for="odyssey_micro_intent">Cảm ơn bạn. Thông tin đã được gửi tới H.O.M.E — chúng tôi sẽ liên hệ khi Odyssey Mission mở thử nghiệm.</div>
+    </div>
+
+    <p class="disclaimer">Odyssey hiện là định hướng chương trình trải nghiệm và phát triển năng lực của H.O.M.E. Đây không phải chương trình cấp bằng phổ thông và các nội dung dài hạn vẫn đang trong quá trình nghiên cứu.</p>
+  </div>
+</section>
+
+<!-- 10 WELLBEING & RETREAT -->
+<section id="wellbeing">
+  <div class="wrap">
+    <span class="eyebrow">10 — Wellbeing &amp; Retreat</span>
+    <span class="badge future">Future Concept</span>
+    <h2>Đôi khi ta không cần đi xa hơn.<br>Ta chỉ cần chậm lại.</h2>
+    <div class="wellbeing-tags" data-group="wellbeing_interest" data-multi="true">
+      <button class="opt-btn" data-value="Yoga">Yoga</button>
+      <button class="opt-btn" data-value="Thiền">Thiền</button>
+      <button class="opt-btn" data-value="Trà">Trà</button>
+      <button class="opt-btn" data-value="Sound Experience">Sound Experience</button>
+      <button class="opt-btn" data-value="Digital Detox">Digital Detox</button>
+      <button class="opt-btn" data-value="Couple Experience">Couple Experience</button>
+      <button class="opt-btn" data-value="Silent Retreat">Silent Retreat</button>
+      <button class="opt-btn" data-value="Entrepreneur Reset">Entrepreneur Reset</button>
+      <button class="opt-btn" data-value="Không quan tâm">Không quan tâm</button>
+    </div>
+  </div>
+</section>
+
+<!-- 11 H.O.M.E ACADEMY -->
+<section style="background:var(--paper);" id="academy">
+  <div class="wrap">
+    <span class="eyebrow">11 — H.O.M.E Academy</span>
+    <span class="badge future">Future Concept</span>
+    <h2>Learn. Live. Grow.</h2>
+    <p style="max-width:56ch;">Learning + Retreat: AI, Business, Entrepreneurship, Finance, Leadership, Sales &amp; Marketing, Parenting, Personal Development.</p>
+  </div>
+</section>
+
+<!-- 12 CORPORATE & COMMUNITY -->
+<section id="corporate">
+  <div class="wrap">
+    <span class="eyebrow">12 — Corporate &amp; Community</span>
+    <h2>Bring your people home.</h2>
+    <p style="max-width:56ch;">Corporate Retreat, Strategy Offsite, Leadership Retreat, Team Building, Workshop, Training Camp, Community Gathering, Private Event — mô hình Venue + Stay + Food + Program + Experience.</p>
+  </div>
+</section>
+
+<!-- 13 PARTNER / AFFILIATE -->
+<section style="background:var(--paper);" id="partner">
+  <div class="wrap">
+    <span class="eyebrow">13 — Partner / Affiliate</span>
+    <h2>Grow H.O.M.E together.</h2>
+    <p style="max-width:56ch;">Cùng H.O.M.E tạo ra những trải nghiệm tốt hơn — dành cho creator, educator, coach, community, và co-host.</p>
+    <div class="partner-grid">
+      <div class="partner-card"><h4>Referral Partner</h4><p>Giới thiệu khách phù hợp, one-level referral, không MLM.</p></div>
+      <div class="partner-card"><h4>Community Partner</h4><p>Đưa cộng đồng đến, đồng tổ chức trải nghiệm riêng.</p></div>
+      <div class="partner-card"><h4>Co-host Partner</h4><p>Expertise + Audience của bạn, cùng H.O.M.E phát triển sản phẩm.</p></div>
+    </div>
+    <p style="font-size:12.5px;opacity:.65;max-width:56ch;margin-top:18px;">V0 chưa có Affiliate Wallet hay commission engine — hợp tác cụ thể sẽ trao đổi trực tiếp sau khi bạn để lại thông tin ở phần khảo sát bên dưới.</p>
+  </div>
+</section>
+
+<!-- 14 FUTURE ECOSYSTEM -->
+<section id="future-eco">
+  <div class="wrap center mx-auto" style="max-width:60ch;">
+    <span class="eyebrow">14 — Future Ecosystem</span>
+    <h2>Family Weekend · Family Legacy · Odyssey · Retreat · Academy · Partner Network.</h2>
+    <p>Tất cả những gì bạn vừa thấy là định hướng chúng tôi đang kiểm chứng — không phải cam kết dịch vụ.</p>
+  </div>
+</section>
+
+<!-- 15 VALIDATION TRANSITION -->
+<section id="validation">
+  <div class="wrap">
+    <div class="validation-transition">
+      <span class="eyebrow" style="color:var(--paper);opacity:.8;">15 — Validation</span>
+      <h2>H.O.M.E vẫn đang được xây dựng.</h2>
+      <p>Chúng tôi không muốn tự ngồi trong phòng rồi đoán bạn cần gì. Trước khi quyết định đầu tư mạnh vào sản phẩm nào, chúng tôi muốn lắng nghe những người có thể thực sự sử dụng H.O.M.E. Những phản hồi này sẽ ảnh hưởng trực tiếp đến những gì H.O.M.E xây tiếp.</p>
+      <a href="#survey" class="btn" style="background:var(--paper);color:var(--terracotta);">Tôi muốn góp ý</a>
+    </div>
+  </div>
+</section>
+
+<!-- 16 DISCOVERY SURVEY -->
+<section style="background:var(--paper);" id="survey">
+  <div class="wrap">
+    <span class="eyebrow">16 — Discovery Survey</span>
+    <h2>Giúp chúng tôi biết nên xây gì trước.</h2>
+    <p style="max-width:56ch;">Vài phút của bạn — điều gì bạn quan tâm, mức giá bạn có thể cân nhắc, và điều gì khiến bạn còn e ngại. Không bắt buộc để lại thông tin liên hệ.</p>
+    <div id="survey-embed">
+      <div class="survey-fallback" id="survey-fallback">
+        Form khảo sát sẽ hiển thị tại đây sau khi gắn TALLY_FORM_ID vào file (xem README).<br>
+        <a class="btn btn-outline" style="margin-top:16px;" id="survey-fallback-link" href="#" target="_blank">Mở khảo sát trong tab mới</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 THANK YOU / SHARE -->
+<section class="thankyou" id="thankyou">
+  <div class="wrap">
+    <span class="eyebrow center" style="display:block;">17 — Thank You</span>
+    <h2>Cảm ơn bạn đã giúp xây H.O.M.E.</h2>
+    <p style="max-width:52ch;margin:0 auto;">Thay vì xây những gì chúng tôi nghĩ mọi người cần, chúng tôi muốn xây những gì thực sự tạo ra giá trị. Phản hồi của bạn đã trở thành một phần của quá trình đó.</p>
+    <div class="share-row">
+      <button class="btn btn-primary" id="share-btn">Chia sẻ H.O.M.E</button>
+      <a href="#hero" class="btn btn-ghost">Quay lại đầu trang</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">H.O.M.E LEGACY</div>
+    <p class="disc-footer">H.O.M.E hiện đang trong giai đoạn nghiên cứu và kiểm chứng thị trường. Một số chương trình, quyền lợi, hình ảnh minh họa và mức giá trên website thể hiện định hướng phát triển, chưa phải cam kết cung cấp dịch vụ hoặc chào bán chính thức.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ====================== CONFIG — chỉnh 3 dòng này khi triển khai ====================== */
+  var CONFIG = {
+    // URL Web App sau khi deploy Google Apps Script (xem README bước 2)
+    APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwfRcC4UJLcugVjBx_9Qn1XA1tMIjpvFB_625K1yq8DpLs0Zwr2E17Inckg5WM5GBMG/exec",
+    // Form ID của Tally (xem README bước 3), ví dụ "abcDEF"
+    TALLY_FORM_ID: "44lrQO",
+    // Bật/tắt gọi Apps Script thật (đặt false để test UI mà không gửi dữ liệu)
+    SEND_ENABLED: true
+  };
+
+  /* ====================== SESSION + ATTRIBUTION ====================== */
+  function uuid(){
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+      var r = Math.random()*16|0, v = c==='x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+    });
+  }
+
+  var SESSION_KEY = "home_session_id";
+  var sessionId = sessionStorage.getItem(SESSION_KEY);
+  if(!sessionId){
+    sessionId = uuid();
+    sessionStorage.setItem(SESSION_KEY, sessionId);
+  }
+
+  var qs = new URLSearchParams(window.location.search);
+  var attribution = {
+    session_id: sessionId,
+    ref_code: qs.get('ref') || '',
+    utm_source: qs.get('utm_source') || '',
+    utm_medium: qs.get('utm_medium') || '',
+    utm_campaign: qs.get('utm_campaign') || '',
+    utm_content: qs.get('utm_content') || '',
+    initial_referrer: document.referrer || ''
+  };
+  // Giữ attribution xuyên suốt phiên (kể cả khi người dùng điều hướng nội bộ)
+  var ATTR_KEY = "home_attribution";
+  var storedAttr = sessionStorage.getItem(ATTR_KEY);
+  if(storedAttr){
+    try{
+      var parsed = JSON.parse(storedAttr);
+      // chỉ giữ giá trị cũ nếu query hiện tại rỗng (không ghi đè ref gốc)
+      Object.keys(attribution).forEach(function(k){
+        if(!attribution[k] && parsed[k]) attribution[k] = parsed[k];
+      });
+    }catch(e){}
+  }
+  sessionStorage.setItem(ATTR_KEY, JSON.stringify(attribution));
+
+  /* ====================== GỬI MICRO-INTENT VỀ GOOGLE SHEET (Apps Script Web App, free) ====================== */
+  function sendMicroIntent(fieldName, value){
+    if(!CONFIG.SEND_ENABLED || CONFIG.APPS_SCRIPT_URL.indexOf("PASTE_") === 0) {
+      console.log("[H.O.M.E dev] would send:", fieldName, value, attribution);
+      return;
+    }
+    var payload = Object.assign({}, attribution, {
+      field: fieldName,
+      value: value,
+      page_url: window.location.href,
+      ts: new Date().toISOString()
+    });
+    // no-cors: Apps Script Web App không trả CORS header đọc được, nhưng vẫn ghi thành công phía server
+    fetch(CONFIG.APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(payload)
+    }).catch(function(err){ console.warn("Micro-intent gửi thất bại (sẽ không chặn trải nghiệm):", err); });
+  }
+
+  /* ====================== REACTION BUTTONS (single-select nhóm reaction) ====================== */
+  document.querySelectorAll('.reaction-opts').forEach(function(group){
+    var isMulti = group.getAttribute('data-multi') === 'true';
+    var fieldName = group.getAttribute('data-group');
+    var followupId = group.getAttribute('data-followup');
+
+    group.querySelectorAll('.opt-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(isMulti){
+          btn.classList.toggle('selected');
+        } else {
+          group.querySelectorAll('.opt-btn').forEach(function(b){ b.classList.remove('selected'); });
+          btn.classList.add('selected');
+        }
+
+        var value = isMulti
+          ? Array.from(group.querySelectorAll('.opt-btn.selected')).map(function(b){return b.getAttribute('data-value');}).join(', ')
+          : btn.getAttribute('data-value');
+
+        sendMicroIntent(fieldName, value);
+
+        // hiện/ẩn câu hỏi mời (micro-intent phụ) theo đúng lựa chọn hiện tại: "mạnh" -> show, đổi sang lựa chọn khác -> ẩn lại
+        if(!isMulti && followupId){
+          var el = document.getElementById(followupId);
+          if(el){
+            if(btn.getAttribute('data-strong') === 'true'){
+              el.classList.add('show');
+            } else {
+              el.classList.remove('show');
+            }
+          }
+        }
+      });
+    });
+  });
+
+  /* "Có" -> hiện form contact. "Có thể"/"Chưa" -> ẩn lại form contact (giữ nguyên dữ liệu đã nhập nếu có),
+     và nếu form chưa submit thì xoá trạng thái lỗi đang hiển thị.
+     KHÔNG hiện thông báo "sẽ liên hệ" ở đây — thông báo chỉ hiện sau khi contact hợp lệ (xem setupContactForm). */
+  document.querySelectorAll('[data-group="family_weekend_micro_intent"] .opt-btn, [data-group="odyssey_micro_intent"] .opt-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var group = btn.closest('.reaction-opts');
+      var value = btn.getAttribute('data-value');
+      var contactFormId = group.getAttribute('data-contact-form');
+      if(!contactFormId) return;
+      var formEl = document.getElementById(contactFormId);
+      if(!formEl) return;
+
+      if(value === 'Có'){
+        formEl.classList.add('show');
+      } else {
+        formEl.classList.remove('show');
+        if(!formEl.classList.contains('submitted')){
+          var errorEl = formEl.querySelector('.contact-error');
+          if(errorEl) errorEl.classList.remove('show');
+        }
+      }
+    });
+  });
+
+  /* ====================== CONTACT FORM (name + phone/email + consent) ======================
+     Chỉ ghi vào Sheet và hiện thông báo "sẽ liên hệ" sau khi:
+     - có tên
+     - có ít nhất một trong hai: điện thoại/Zalo hoặc email
+     - đã tick đồng ý điều khoản
+     Dữ liệu gửi kèm session_id/ref_code/UTM hiện có trong "attribution". */
+  function setupContactForm(formId, contactSource, thanksSelector){
+    var formEl = document.getElementById(formId);
+    if(!formEl) return;
+    var submitBtn = formEl.querySelector('.contact-submit');
+    var errorEl = formEl.querySelector('.contact-error');
+    var nameInput = formEl.querySelector('[data-field="name"]');
+    var phoneInput = formEl.querySelector('[data-field="phone"]');
+    var emailInput = formEl.querySelector('[data-field="email"]');
+    var consentInput = formEl.querySelector('[data-field="consent"]');
+
+    submitBtn.addEventListener('click', function(){
+      var name = (nameInput.value || '').trim();
+      var phone = (phoneInput.value || '').trim();
+      var email = (emailInput.value || '').trim();
+      var consent = !!consentInput.checked;
+
+      if(!name || !(phone || email) || !consent){
+        errorEl.classList.add('show');
+        return;
+      }
+      errorEl.classList.remove('show');
+
+      var payload = Object.assign({}, attribution, {
+        type: "contact",
+        contact_source: contactSource,
+        contact_name: name,
+        contact_phone: phone,
+        contact_email: email,
+        contact_consent: "true",
+        page_url: window.location.href,
+        ts: new Date().toISOString()
+      });
+
+      if(CONFIG.SEND_ENABLED && CONFIG.APPS_SCRIPT_URL.indexOf("PASTE_") !== 0){
+        fetch(CONFIG.APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {"Content-Type":"text/plain;charset=utf-8"},
+          body: JSON.stringify(payload)
+        }).catch(function(err){ console.warn("Gửi contact thất bại (không chặn trải nghiệm):", err); });
+      } else {
+        console.log("[H.O.M.E dev] would send contact:", payload);
+      }
+
+      // chỉ hiện thông báo "sẽ liên hệ" SAU khi contact hợp lệ và đã gửi
+      formEl.classList.add('submitted');
+      submitBtn.disabled = true;
+      var thanksEl = document.querySelector(thanksSelector);
+      if(thanksEl) thanksEl.classList.add('show');
+    });
+  }
+
+  setupContactForm('fw-contact', 'family_weekend', '[data-thanks-for="family_weekend_micro_intent"]');
+  setupContactForm('ody-contact', 'odyssey', '[data-thanks-for="odyssey_micro_intent"]');
+
+  /* ====================== TALLY EMBED — gắn session_id/ref/utm qua hidden field ====================== */
+  (function initTally(){
+    var container = document.getElementById('survey-embed');
+    var fallback = document.getElementById('survey-fallback');
+    var fallbackLink = document.getElementById('survey-fallback-link');
+
+    if(CONFIG.TALLY_FORM_ID.indexOf("PASTE_") === 0){
+      return; // giữ nguyên fallback message, chưa cấu hình form
+    }
+
+    var params = new URLSearchParams({
+      session_id: attribution.session_id,
+      ref_code: attribution.ref_code,
+      utm_source: attribution.utm_source,
+      utm_medium: attribution.utm_medium,
+      utm_campaign: attribution.utm_campaign
+    });
+    var src = "https://tally.so/embed/" + CONFIG.TALLY_FORM_ID + "?alignLeft=1&hideTitle=1&dynamicHeight=1&" + params.toString();
+
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.loading = "lazy";
+    iframe.title = "H.O.M.E Discovery Survey";
+    container.innerHTML = "";
+    container.appendChild(iframe);
+
+    if(fallbackLink) fallbackLink.href = src;
+  })();
+
+  /* ====================== SHARE ====================== */
+  var shareBtn = document.getElementById('share-btn');
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      var shareData = {
+        title: "H.O.M.E Legacy",
+        text: "Một nơi để trở về. Một nơi để trưởng thành.",
+        url: window.location.origin + window.location.pathname
+      };
+      if(navigator.share){
+        navigator.share(shareData).catch(function(){});
+      } else {
+        navigator.clipboard.writeText(shareData.url).then(function(){
+          shareBtn.textContent = "Đã sao chép link!";
+          setTimeout(function(){ shareBtn.textContent = "Chia sẻ H.O.M.E"; }, 2200);
+        });
+      }
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
